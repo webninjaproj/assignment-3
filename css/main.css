@@ -1,0 +1,83 @@
+
+
+
+@import url(https://fonts.googleapis.com/css?family=Lato);
+
+html {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    overflow-x: auto;
+    overflow-y: auto;
+}
+
+#dropdown-menu {
+   clear:both;
+   float:left;
+   margin:0;
+   padding:10px;
+   width:100%;
+   color: #0099cc
+   background-color: #000000;
+   font-family: 'Lato', sans-serif;/* Menu font */
+   font-size:90%; /* Menu text size */
+   z-index:1000; /* This makes the dropdown menus appear above the page content below */
+   position:relative;
+}
+
+#dropdown-menu ul {
+   margin:0px;
+   padding:0;
+   list-style:none;
+   float:right;
+   position:relative;
+   right:50%;
+}
+
+#dropdown-menu ul li {
+   margin:0 0 0 1px;
+   border-right:1px solid #000; /* black line right side of each menu item */
+   padding:0;
+   float:left;
+   position:relative;
+   left:50%;
+   top:1px;
+}
+
+#dropdown-menu ul li a {
+   display:block;
+   margin:0;
+   padding:.6em .5em .4em;
+   font-size:1em;
+   line-height:1em;
+   background:#000000;
+   text-decoration:none;
+   color:#0099cc;
+   font-weight:bold;
+}
+
+#dropdown-menu a:link, a:visited {
+    display: block;
+    width: 225px;
+    font-weight: bold;
+    color: #0099cc;
+    background-color: #000000;
+    text-align: center;
+    padding: 10px;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+#dropdown-menu a:hover, a:active {
+    background-color: #0099cc;
+	color: #000000;
+}
+
+ban {
+	    color: #000000;
+		font-weight: bold;
+		font-style: oblique;
+		font-size: 55px;
+    font-family: 'Lato', sans-serif;
+
+}
