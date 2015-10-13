@@ -208,31 +208,43 @@ function test_input($data) {
 
 
 <form id ="form" align="center" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-<fieldset>
-            <legend>LOGIN</legend>
-            
-              <p>
-        <fieldset id="LookingFor">
-           <label for='username'>Username: </label> &nbsp &nbsp &nbsp
-   <input type="text" name="username" style="margin-left:50px;" placeholder="Enter a Username">
-   <span class="error"><?php echo $usernameErr;?></span>
-   <br><br>
-   <label for='password'>Password: </label> &nbsp &nbsp &nbsp
-   <input type="password" name="password" style="margin-left:50px;" placeholder="Enter a Password">
-   <span class="error"><?php echo $passwordErr;?></span>
-   <p><?php echo $loginErr;?></p>
-   <br><br>
- <p id = "buttonp">
-                <button class ="button" type="submit" value="Submit">SUBMIT</button> &nbsp &nbsp &nbsp
-                <a href="registerationUser.php" style="color:Black">REGISTER NOW!</a>
-            </p>
-       </fieldset>
+<fieldset <legend>LOGIN</legend>
+   <p>
+<fieldset id="LookingFor">
+	
+<label for='username'>Username: </label> &nbsp &nbsp &nbsp
+
+<input type="text" name="username" id ="username" style="margin-left:50px;" placeholder="Enter a Username">
+
+<span class="error"><?php echo $usernameErr;?></span>
+<br><br>
+<label for='password'>Password: </label> &nbsp &nbsp &nbsp
+
+<input type="password" name="password" id ="password" style="margin-left:50px;" placeholder="Enter a Password">
+
+<span class="error"><?php echo $passwordErr;?></span>
+
+<p><?php echo $loginErr;?></p>
+<br><br>
+<p id = "buttonp">
+        <button class ="button" type="submit" value="Submit">SUBMIT</button> &nbsp &nbsp &nbsp
+        <a href="registerationUser.php" style="color:Black">REGISTER NOW!</a>
+</p>
+</fieldset>
 
 
-    </form>
+</form>
 
   
-
+<style>
+	var username =  document.getElementByID("username").value;
+	var password = document.getElementByID("password").value;
+	if(username == && password == )
+	{
+		alert("Login successfully");
+		window.location = 
+	}
+</style>
 
 
 
