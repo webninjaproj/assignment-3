@@ -236,15 +236,33 @@ function test_input($data) {
 </form>
 
   
-<style>
+<script>
+function validate(form)
+{
 	var username =  document.getElementByID("username").value;
 	var password = document.getElementByID("password").value;
-	if(username == && password == )
+	
+	//only letter and numbers and min length 3-20 char
+	var checkusername = /^[A-Za-z0-9_]{3,20}$/;
+	
+	//allows numbers, letters, and special char but min length 6 -20
+	var checkpassword = /^[A-Za-z0-9!@#$%^&*()_]{6,20}$/;
+	
+	if(!checkusername.test(username))
 	{
-		alert("Login successfully");
-		window.location = 
+		alert("You must enter a valid username.");
+		
 	}
-</style>
+	if(!checkpassword.test(password))
+	{
+		alert("You must enter a valid password.");
+	}
+	if(checkpassword.test(password) && checkpassword.test(login))
+	{
+	window.location(thankyou.php);
+	}
+}
+</script>
 
 
 
