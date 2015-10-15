@@ -129,102 +129,26 @@ button {
   <li><a href="employee.html">Employer</a></li>
   <li><a href="about.html">About Us</a></li></ul></nav> 
 
-<?php
-//define var
-$user = $pass = $usernameErr = $passwordErr = $loginErr="";
-if ($_SERVER["REQUEST_METHOD"] == "POST") 
-{
-   $valid = true;
- if (empty($_POST["username"])) 
-   {
-     $usernameErr = "username is required";
-     $valid= false;
-   } else {
-     $user = test_input($_POST["username"]);
- }
-
-   if (empty($_POST["password"])) 
-     {
-     $passwordErr = "password is required";
-     $valid = false;
-     } 
-    else
-     {
-     $pass = test_input($_POST["password"]);
-	 }
-  if($valid)
-    {
-     $user = $_POST['username'];
-      $pass =$_POST['password'];
-
-      
-
-try {
-  
-    require_once 'connection.php';
-    $conn = new PDO("mysql:host=".servername.";dbname=".dbname, username, password);
-    // set the PDO error mode to exception
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-    $query = "SELECT * FROM user WHERE username = '$user' AND password = '$pass'";
-
-    $result = $conn->query($query);
-    $row = $result->fetch(PDO::FETCH_ASSOC);
 
 
-    if($row)
-    {
-  
-      header('Location: http://localhost/thankyou.php');
-
-    }
-    else
-    {
-
-      $loginErr = "Login failed! Username password doesn't match";
-    }
-
-   }
-
-
-    
-catch(PDOException $e)
-    {
-    echo $sql . "<br>" . $e->getMessage();
-    }
-
-  $conn = null;
-
-}
-
-}
-function test_input($data) {
-   $data = trim($data);
-   $data = stripslashes($data);
-   $data = htmlspecialchars($data);
-   return $data;
-}
-?>
-
-
-<form id ="form" align="center" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+<form name = "form" action ="thankyou.php" align="center" method="post" onsubmit = "return validate(this);">
 <fieldset <legend>LOGIN</legend>
    <p>
 <fieldset id="LookingFor">
 	
 <label for='username'>Username: </label> &nbsp &nbsp &nbsp
 
-<input type="text" name="username" id ="username" style="margin-left:50px;" placeholder="Enter a Username">
+<input type="text" name="username"  style="margin-left:50px;" placeholder="Enter a Username">
 
-<span class="error"><?php echo $usernameErr;?></span>
+
 <br><br>
 <label for='password'>Password: </label> &nbsp &nbsp &nbsp
 
-<input type="password" name="password" id ="password" style="margin-left:50px;" placeholder="Enter a Password">
+<input type="password" name="password" style="margin-left:50px;" placeholder="Enter a Password">
 
-<span class="error"><?php echo $passwordErr;?></span>
 
-<p><?php echo $loginErr;?></p>
+
+
 <br><br>
 <p id = "buttonp">
         <button class ="button" type="submit" value="Submit">SUBMIT</button> &nbsp &nbsp &nbsp
@@ -236,11 +160,11 @@ function test_input($data) {
 </form>
 
   
-<script>
+<script type = "text/Javascript">
 function validate(form)
 {
-	var username =  document.getElementByID("username").value;
-	var password = document.getElementByID("password").value;
+	
+	
 	
 	//only letter and numbers and min length 3-20 char
 	var checkusername = /^[A-Za-z0-9_]{3,20}$/;
@@ -248,19 +172,43 @@ function validate(form)
 	//allows numbers, letters, and special char but min length 6 -20
 	var checkpassword = /^[A-Za-z0-9!@#$%^&*()_]{6,20}$/;
 	
-	if(!checkusername.test(username))
+	//check if just username is blank
+	if(form.username.value == "")
 	{
-		alert("You must enter a valid username.");
+		alert("Username cannot be blank. Please reenter username.");
+		return false;
+	}
+	
+	//check if just password is blank
+	if(form.password.value == "")
+	{
+		alert("Password cannot be blank. Please reenter password.");
+		return false;
+	}
+	
+	//returns false and an alert if username does not pass check
+	if(!checkusername.test(form.username.value))
+	{
+		
+		alert("Please enter a valid username.");
+		return false;
+	}
+	
+	//returns false and an alert if password does not pass check
+	if(!checkpassword.test(form.password.value))
+	{
+		
+	    alert("Please enter a valid password. The length must be a minimum of 6 to 18.");
+		return false;
+	}
+	
+	//returns true and redirects to thankyou.php window
+	if(checkpassword.test(form.password.value) && checkusername.test(form.username.value))
+	{
+		return true;
 		
 	}
-	if(!checkpassword.test(password))
-	{
-		alert("You must enter a valid password.");
-	}
-	if(checkpassword.test(password) && checkpassword.test(login))
-	{
-	window.location(thankyou.php);
-	}
+	
 }
 </script>
 
