@@ -98,87 +98,12 @@ fieldset{
   <li><a href="about.html">About Us</a></li></ul></nav> 
   <?php
 // define variables and set to empty values
-$fnameErr = $emailErr = $lnameErr = $usernameErr = $passwordErr = $repasswordErr = "";
+
 $fname = $email = $lname = $user = $pass = $repass = $test = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") 
 {
-   $valid = true;
-
-   if (empty($_POST["fname"])) 
-   {
-     $fnameErr = "First Name is required";
-     $valid = false;
-   } 
-   else 
-   {
-     $fname = test_input($_POST["fname"]);
-     if (!preg_match("/^[a-zA-Z ]*$/",$fname)) 
-     {
-     $fnameErr = "Only letters and white space allowed"; 
-     $valid = false;
-   }
-   }
-
-   if (empty($_POST["lname"])) {
-     $lnameErr = "Last Name is required";
-     $valid = false;
-    } 
-   else {
-     $lname = test_input($_POST["lname"]);
-     if (!preg_match("/^[a-zA-Z ]*$/",$lname)) 
-     {
-     $lnameErr = "Only letters and white space allowed"; 
-     $valid = false;
-   }
-   }
    
-   if (empty($_POST["email"])) {
-     $emailErr = "Email is required";
-     $valid = false;
-   } else {
-     $email = test_input($_POST["email"]);
-     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-     $emailErr = "Invalid email format"; 
-     $valid = false;
-     }
-   }
-     
-   if (empty($_POST["username"])) 
-   {
-     $usernameErr = "username is required";
-     $valid= false;
-   } else {
-     $user = test_input($_POST["username"]);
-   }
-
-   if (empty($_POST["password"])) 
-     {
-     $passwordErr = "password is required";
-     $valid = false;
-     } 
-    else
-     {
-     $pass = test_input($_POST["password"]);
-    }
-    if (empty($_POST["repass"])) 
-     {
-     $repasswordErr = "password is required";
-     $valid = false;
-     } 
-    else
-     {
-     $repass = test_input($_POST["repass"]);
-    }
-
-    if($pass != $repass)
-    {
-    $repasswordErr = "password donot match";
-    }
-    else
-    {
-    if($valid)
-    {
     
       $fname = $_POST['fname'];
       $lname = $_POST['lname'];
@@ -218,8 +143,7 @@ try {
 
     $test ="User already Exsits!";
     }
-
-   }
+  }
 
 
     
@@ -230,15 +154,7 @@ catch(PDOException $e)
 
   $conn = null;
 
-}
-}
-}
 
-function test_input($data) {
-   $data = trim($data);
-   $data = stripslashes($data);
-   $data = htmlspecialchars($data);
-   return $data;
 }
 ?>
 
@@ -253,27 +169,27 @@ function test_input($data) {
   <p ><span class="error" >* All fields are required</span></p>
    <label for='fname'>First Name: </label> &nbsp &nbsp &nbsp
    <input type="text" name="fname" style="margin-left:40px;"placeholder="First Name">
-   <span class="error"><?php echo $fnameErr;?></span>
+   
    <br><br>
    <label for='lname'>Last Name: </label> &nbsp &nbsp &nbsp
    <input type="text" name="lname" style="margin-left:40px;"placeholder="Last Name">
-   <span class="error"><?php echo $lnameErr;?></span>
+   
    <br><br>
    <label for='email'> Email: </label> &nbsp &nbsp &nbsp
    <input type="text" name="email" style = "margin-left:90px;" placeholder="Email Address">
-   <span class="error"><?php echo $emailErr;?></span>
+   
    <br><br>
    <label for='username'>Username: </label> &nbsp &nbsp &nbsp
    <input type="text" name="username" style="margin-left:50px;" placeholder="Enter a Username">
-   <span class="error"><?php echo $usernameErr;?></span>
+   
    <br><br>
    <label for='password'>Password: </label> &nbsp &nbsp &nbsp
    <input type="password" name="password" style="margin-left:50px;" placeholder="Enter a Password">
-   <span class="error"><?php echo $passwordErr;?></span>
+   
    <br><br>
    <label for='password'> Re-type Password: </label> &nbsp &nbsp &nbsp
    <input type="password" name="repass" style="margin-right:30px;" placeholder=" Retype the Password">
-   <span class="error"><?php echo $repasswordErr;?></span>
+   
    <br><br>
 
             <p id = "buttonp">
