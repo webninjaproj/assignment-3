@@ -110,13 +110,13 @@ button {
                     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                     if((strlen($pos)) > 0)
                     {
-                        if($fcgorexp == "Fresh Graduate")
+                       if($fcgorexp == "fcg")
                         {
-                            $query = "SELECT j.firstname,j.lastname,j.email,b.industrytype,b.degree,e.gpa,e.university FROM JobSeeker j,BasicProfile b,Education WHERE b.industrytype = '$pos' AND e.gpa >= '$cgpa'";
+                            $query = "SELECT j.firstname,j.lastname,j.email,b.industrytype,b.degree,e.gpa,e.university FROM JobSeeker j,BasicProfile b,Education e WHERE b.industrytype = '$pos' AND e.gpa >= '$cgpa' AND b.degree = '$deg' AND j.username = b.username AND b.username = e.username";
 						}
                         else
                         {
-                            $query = "SELECT j.firstname,j.lastname,j.email,b.industrytype,b.degree,x.yearsofexp,x.emplname,x.description FROM JobSeeker j,BasicProfile b,Experience x WHERE b.industrytype = '$pos' AND x.yearsofexp >= '$exp' AND x.description = '$skill'";
+                            $query = "SELECT j.firstname,j.lastname,j.email,b.industrytype,b.degree,x.yearsofexp,x.emplname,x.description FROM JobSeeker j,BasicProfile b,Experience x WHERE b.industrytype = '$pos' AND x.yearsofexp >= '$exp' AND x.description = '$skill' AND j.username = b.username AND b.username = x.username";
                         }
                     }
                     $result = $conn->query($query);
@@ -134,7 +134,7 @@ button {
                     else
                         {
                            print "<h2>Candidates Matching your Criteria</h2>\n";
-                           print "<table>\n";
+                           print "<table align ='center'>\n";
 
                             print "        <tr>\n";
                             foreach ($row as $field => $value) {
@@ -148,19 +148,7 @@ button {
                             foreach ($data as $row) {
                             print "       <tr>\n";
                             foreach ($row as $name => $value) {
-                                if($name == 'UG' || $name == 'Graduate' || $name == 'HTML' || $name == 'PHP' || $name == 'MySQL')
-                                    {
-                                        if($value == 0)
-                                        {
-                                            $value = 'NO';
-                                        }
-                                        else
-                                        {
-                                            $value = 'YES';
-                                        }
-                                    } 
-
-
+                              
                                     print "     <td>$value</td>\n";
                                     
                                 }
@@ -186,7 +174,7 @@ button {
     </p>
 
    <br><br><br><br>
-    <h2 id="para"><?php echo $test;?></h2> <br><br><br>
+    <h2 id="para"><?php if(!$row){ echo $test;} ?></h2> <br><br><br>
     <button class = "back" onclick="history.go(-1);" style="margin-left:50%;">Back</button>
   
 

@@ -129,7 +129,58 @@ button {
   <li><a href="employee.html">Employer</a></li>
   <li><a href="about.html">About Us</a></li></ul></nav> 
 
+<?php
+//define var
+$user = $pass = $usernameErr = $passwordErr = $loginErr="";
+if ($_SERVER["REQUEST_METHOD"] == "POST") 
+{
 
+     $user = $_POST['username'];
+    $pass =$_POST['password'];
+
+      
+try {
+  
+    require_once 'connection.php';
+    $conn = new PDO("mysql:host=".servername.";dbname=".dbname, username, password);
+    // set the PDO error mode to exception
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+   
+    $query = "SELECT * FROM user WHERE username = '$user' AND password = '$pass'";
+
+    $result = $conn->query($query);
+    $row = $result->fetch(PDO::FETCH_ASSOC);
+
+    if($row)
+    {
+  
+      header('Location: http://localhost/thankyou.php');
+
+    }
+    else
+    {
+
+      $loginErr = "Login failed! Username password doesn't match";
+    }
+
+   }
+
+
+    
+catch(PDOException $e)
+    {
+    echo $sql . "<br>" . $e->getMessage();
+    }
+
+  $conn = null;
+
+}
+
+
+
+
+?>
 
 <form name = "form" action ="thankyou.php" align="center" method="post" onsubmit = "return validate(this);">
 <fieldset <legend>LOGIN</legend>

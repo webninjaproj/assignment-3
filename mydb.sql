@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 02, 2015 at 06:52 PM
+-- Generation Time: Oct 13, 2015 at 11:46 PM
 -- Server version: 5.6.26
 -- PHP Version: 5.6.12
 
@@ -33,6 +33,25 @@ CREATE TABLE IF NOT EXISTS `basicprofile` (
   `username` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `basicprofile`
+--
+
+INSERT INTO `basicprofile` (`fcgorexp`, `industrytype`, `degree`, `username`) VALUES
+('Experienced', 'Software', 'Undergraduate', 'bi'),
+('Experienced', 'Software', 'Undergraduate', 'chandler'),
+('Fresh Graduate', 'Hardware', 'Graduate', 'christina'),
+('Fresh Graduate', 'Software', 'Graduate', 'deebiga'),
+('Experienced', 'Software', 'Graduate', 'derek'),
+('Experienced', 'Testing', 'Undergraduate', 'divina'),
+('Fresh Graduate', 'Software', 'Graduate', 'divya'),
+('Fresh Graduate', 'Testing', 'Undergraduate', 'joey'),
+('Experienced', 'Testing', 'Graduate', 'meredith'),
+('Experienced', 'Hardware', 'Graduate', 'monica'),
+('Experienced', 'Testing', 'Undergraduate', 'phoebe'),
+('Fresh Graduate', 'Hardware', 'Graduate', 'rachel'),
+('Fresh Graduate', 'Hardware', 'Graduate', 'ross');
+
 -- --------------------------------------------------------
 
 --
@@ -58,6 +77,18 @@ CREATE TABLE IF NOT EXISTS `education` (
   `university` varchar(75) NOT NULL,
   `username` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `education`
+--
+
+INSERT INTO `education` (`gpa`, `university`, `username`) VALUES
+(3.9, 'Michigan University', 'ross'),
+(3.4, 'New York University', 'rachel'),
+(4.3, 'Oklohama University', 'christina'),
+(3.9, 'San Jose State University', 'deebiga'),
+(4.1, 'Stanford University', 'divya'),
+(3.1, 'University of Berkeley', 'joey');
 
 -- --------------------------------------------------------
 
@@ -85,6 +116,19 @@ CREATE TABLE IF NOT EXISTS `experience` (
   `description` varchar(450) NOT NULL,
   `username` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `experience`
+--
+
+INSERT INTO `experience` (`emplname`, `yearsofexp`, `description`, `username`) VALUES
+('Hitachi', 1, 'Javascript', 'bi'),
+('Cloudera', 3, 'SQL', 'chandler'),
+('US Government', 5, 'Neural networks', 'derek'),
+('8x8', 2, 'QA', 'divina'),
+('Seattle Grace Technologies', 4, 'SDET', 'meredith'),
+('Dell', 3, 'Circuit Design', 'monica'),
+('Google', 4, 'Automation', 'phoebe');
 
 -- --------------------------------------------------------
 
@@ -125,8 +169,28 @@ CREATE TABLE IF NOT EXISTS `jobseeker` (
   `usertype` varchar(20) NOT NULL DEFAULT 'jobseeker',
   `firstname` varchar(45) NOT NULL,
   `lastname` varchar(45) NOT NULL,
-  `email` varchar(50) NOT NULL
+  `email` varchar(50) NOT NULL,
+  `password` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `jobseeker`
+--
+
+INSERT INTO `jobseeker` (`username`, `usertype`, `firstname`, `lastname`, `email`, `password`) VALUES
+('bi', 'jobseeker', 'Dung', 'Nguyen', 'dung@jobninja.com', 'bi123'),
+('chandler', 'jobseeker', 'Chandler', 'Bing', 'chandler@friends.com', 'chandler123'),
+('christina', 'jobseeker', 'Christina', 'Yang', 'christina@greys.com', 'christina123'),
+('deebiga', 'jobseeker', 'Deebiga', 'Rajeswaran', 'deebiga@jobninja.com', 'db123'),
+('derek', 'jobseeker', 'Derek', 'Shepherd', 'derek@greys.com', 'derek123'),
+('divina', 'jobseeker', 'Divina', 'Vidal', 'divina@jobninja.com', 'divina123'),
+('divya', 'jobseeker', 'Divya', 'Kathiravan', 'divya@jobninja.com', 'divya123'),
+('joey', 'jobseeker', 'Joey', 'Tribbiani', 'joey@friends.com', 'joey123'),
+('meredith', 'jobseeker', 'Meredith', 'Grey', 'meredith@greys.com', 'meredith123'),
+('monica', 'jobseeker', 'Monica', 'Geller', 'monica@jobninja.com', 'monica123'),
+('phoebe', 'jobseeker', 'Phoebe', 'Buffay', 'phoebe@jobninja.com', 'phoebe123'),
+('rachel', 'jobseeker', 'Rachel', 'Green', 'rachel@jobninja.com', 'rachel123'),
+('ross', 'jobseeker', 'Ross', 'Geller', 'ross@jobninja.com', 'ross123');
 
 -- --------------------------------------------------------
 
@@ -158,33 +222,19 @@ CREATE TABLE IF NOT EXISTS `user` (
 --
 
 INSERT INTO `user` (`username`, `password`, `email`, `usertype`, `confirmcode`) VALUES
-('chandler', 'chandler', 'chandler@webninja.com', 'jobseeker', 0),
-('deebiga', 'deebiga', 'deebiga@webninja.com', 'jobseeker', 0),
-('divina', 'divina', 'divina@webninja.com', 'jobseeker', 0),
-('divya', 'divya', 'divya@webninja.com', 'jobseeker', 0),
-('dung', 'dung', 'dung@webninja.com', 'jobseeker', 0),
-('phoebe', 'phoebe', 'phoebe@webninja.com', 'jobseeker', 0),
-('rachel', 'rachel', 'rachel@webninja.com', 'jobseeker', 0),
-('ross', 'ross', 'ross@webninja.com', 'jobseeker', 0),
-('sam', 'sam', 'sam@webninja.com', 'jobseeker', 0),
-('victor', 'victor', 'victor@webninja.com', 'jobseeker', 0);
-
--- --------------------------------------------------------
-
---
--- Stand-in structure for view `view1`
---
-CREATE TABLE IF NOT EXISTS `view1` (
-`firstname` varchar(45)
-,`lastname` varchar(45)
-,`email` varchar(50)
-,`industrytype` varchar(45)
-,`degree` varchar(25)
-,`gpa` float unsigned
-,`university` varchar(75)
-,`emplname` varchar(45)
-,`yearsofexp` int(10) unsigned
-);
+('bi', 'bi123', 'dung@jobninja.com', 'jobseeker', 0),
+('chandler', 'chandler123', 'chandler@friends.com', 'jobseeker', 0),
+('christina', 'christina123', 'christina@greys.com', 'jobseeker', 0),
+('deebiga', 'db123', 'deebiga@jobninja.com', 'jobseeker', 0),
+('derek', 'derek123', 'derek@greys.com', 'jobseeker', 0),
+('divina', 'divina123', 'divina@jobninja.com', 'jobseeker', 0),
+('divya', 'divya123', 'divya@jobninja.com', 'jobseeker', 0),
+('joey', 'joey123', 'joey@friends.com', 'jobseeker', 0),
+('meredith', 'meredith123', 'meredith@greys.com', 'jobseeker', 0),
+('monica', 'monica123', 'monica@friends.com', 'jobseeker', 0),
+('phoebe', 'phoebe123', 'phoebe@friends.com', 'jobseeker', 0),
+('rachel', 'rachel123', 'rachel@friends.com', 'jobseeker', 0),
+('ross', 'ross123', 'ross@friends.com', 'jobseeker', 0);
 
 -- --------------------------------------------------------
 
@@ -197,15 +247,6 @@ CREATE TABLE IF NOT EXISTS `zipdetails` (
   `city` char(15) NOT NULL,
   `state` varchar(25) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Structure for view `view1`
---
-DROP TABLE IF EXISTS `view1`;
-
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view1` AS select `j`.`firstname` AS `firstname`,`j`.`lastname` AS `lastname`,`j`.`email` AS `email`,`b`.`industrytype` AS `industrytype`,`b`.`degree` AS `degree`,`e`.`gpa` AS `gpa`,`e`.`university` AS `university`,`x`.`emplname` AS `emplname`,`x`.`yearsofexp` AS `yearsofexp` from (((`jobseeker` `j` join `basicprofile` `b`) join `education` `e`) join `experience` `x`) where ((`j`.`username` = `e`.`username`) and (`j`.`username` = `b`.`username`) and (`j`.`username` = `x`.`username`));
 
 --
 -- Indexes for dumped tables
@@ -306,7 +347,8 @@ ALTER TABLE `basicprofile`
 -- Constraints for table `contactjobseeker`
 --
 ALTER TABLE `contactjobseeker`
-  ADD CONSTRAINT `fk_contact_zip` FOREIGN KEY (`zipcode`) REFERENCES `zipdetails` (`zipcode`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_contact_zip` FOREIGN KEY (`zipcode`) REFERENCES `zipdetails` (`zipcode`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_email_user` FOREIGN KEY (`email`) REFERENCES `jobseeker` (`email`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `education`
@@ -335,17 +377,16 @@ ALTER TABLE `jobprofile`
   ADD CONSTRAINT `fk_job_empl` FOREIGN KEY (`companyname`) REFERENCES `emplprofile` (`username`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `jobseeker`
---
-ALTER TABLE `jobseeker`
-  ADD CONSTRAINT `fk_js_contact` FOREIGN KEY (`email`) REFERENCES `contactjobseeker` (`email`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_js_user` FOREIGN KEY (`username`) REFERENCES `user` (`username`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
 -- Constraints for table `skills`
 --
 ALTER TABLE `skills`
   ADD CONSTRAINT `fk_skills_js` FOREIGN KEY (`username`) REFERENCES `jobseeker` (`username`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `user`
+--
+ALTER TABLE `user`
+  ADD CONSTRAINT `fk_user` FOREIGN KEY (`username`) REFERENCES `jobseeker` (`username`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
